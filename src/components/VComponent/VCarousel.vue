@@ -19,8 +19,8 @@ export default {
 
     props: {
       slides: {
-        default: () => {},
-        type: Object
+        default: () => [],
+        type: Array
       },
     },
     components: {
@@ -35,7 +35,7 @@ export default {
     .container {
         display:flex;
         justify-content: center;
-        padding: 0 18px;
+        padding: 18px 18px;
     }
     .carousel {
         position:relative;

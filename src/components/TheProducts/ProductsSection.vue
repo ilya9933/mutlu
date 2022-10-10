@@ -18,6 +18,7 @@
       
     </div>
     <VCarousel
+    :class="$style.carousel"
     :slides="slides"
     />
   </div>
@@ -25,7 +26,7 @@
 
 <script>
    import VButton from '../VComponent/VButton.vue'
-   import VProduct from '../VComponent/VProduct.vue'
+   import VProduct from './TheProduct.vue'
    import VCarousel from '../VComponent/VCarousel.vue'
 
   export default {
@@ -119,6 +120,7 @@
   .container {
     @apply w-full mx-auto max-w-xxl text-start px-4;
     padding-top: 47px;
+    padding-bottom: 61px;
   }
 
   .title {
@@ -142,8 +144,13 @@
     padding-top: 39px;
     display: grid;
     grid-template-columns: repeat(auto-fit, 282px);
-    grid-template-rows: repeat(auto-fit, 377px);
+    grid-auto-rows: 374px;
     justify-content: space-between;
+  }
+
+  .carousel {
+    @apply border border-gray rounded;
+    margin-top: 40px;
   }
 
   .button {

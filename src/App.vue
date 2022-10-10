@@ -21,6 +21,9 @@
     <section class="products">
       <ProductsSection />
     </section>
+    <section class="red">
+      <CertificateBlockComponents />
+    </section>
   </div>
 </template>
 
@@ -29,6 +32,7 @@
   import VParallax from './components/VComponent/VParallax.vue'
   import MainSection from './components/TheMainBlock/MainSection.vue'
   import ProductsSection from './components/TheProducts/ProductsSection.vue'
+  import CertificateBlockComponents from './components/TheCertificateBlock/CertificateBlockComponents.vue'
 
 export default {
   name: 'App',
@@ -37,6 +41,7 @@ export default {
     VParallax,
     MainSection,
     ProductsSection,
+    CertificateBlockComponents,
   },
   data: () => ({
       imgPosition: 0,
@@ -90,6 +95,11 @@ export default {
   z-index: 0;
   top: 104px;
   left: 99px;
+}
+
+.red {
+  @apply bg-red;
+  height: 567px;
 }
 
 

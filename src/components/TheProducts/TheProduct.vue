@@ -21,10 +21,10 @@
 </template>
 
 <script>
-   import VButton from './VButton.vue'
+   import VButton from '../VComponent/VButton.vue'
 
   export default {
-    name: 'VProduct',
+    name: 'TheProduct',
     components: {
       VButton,
     },
