@@ -16,7 +16,6 @@
         >
         <img src="./assets/img/car.png" alt="car">
       </VParallax>
-
     </div>
     <section class="products">
       <ProductsSection />
@@ -24,6 +23,22 @@
     <section class="red">
       <CertificateBlockComponents />
     </section>
+    <section class="delivery">
+      <DeliveryBlock />
+    </section>
+    <div class="relative parallaxFixed">
+      <VParallax id="car"
+        :sectionHeight=540
+        >
+        <img src="./assets/img/bg.png" alt="bg">
+      </VParallax>
+    </div>
+    <section class="contacts">
+      <ContactsBlock/>
+    </section>
+    <footer>
+
+    </footer>
   </div>
 </template>
 
@@ -33,6 +48,8 @@
   import MainSection from './components/TheMainBlock/MainSection.vue'
   import ProductsSection from './components/TheProducts/ProductsSection.vue'
   import CertificateBlockComponents from './components/TheCertificateBlock/CertificateBlockComponents.vue'
+  import DeliveryBlock from './components/TheDelivery/DeliveryBlock.vue'
+  import ContactsBlock from './components/TheContacts/ContactsBlock.vue'
 
 export default {
   name: 'App',
@@ -42,6 +59,8 @@ export default {
     MainSection,
     ProductsSection,
     CertificateBlockComponents,
+    DeliveryBlock,
+    ContactsBlock,
   },
   data: () => ({
       imgPosition: 0,

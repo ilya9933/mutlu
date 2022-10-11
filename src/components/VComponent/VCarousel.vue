@@ -46,31 +46,31 @@ export default {
         border-radius: 4px;
     }
     .btn {
-        background-color:#FFFFFF;
         height:60px;
         width:60px;
         position:absolute;
         z-index:2;
         display: flex;
+        cursor: pointer;
     }
     .btn img {
         margin: auto;
         opacity: 1;
         height: 20px;
-        color: #FFFFFF;
+        transition: all 0.3s ease-in-out;
     }
-    .btn:hover {
-        cursor: pointer;
+    .btn:hover img {
+        height: 25px;
     }
     .btn-next {
         bottom: 46px;
         right: 46px;
-        opacity: 0.1;
+        background-color: rgba(255, 255, 255, 0.1);
     }
     .btn-prev {
         bottom: 46px;
         right: 106px;
-        opacity: 0.05;
+        background-color: rgba(255, 255, 255, 0.05);
     }
     .carousel-slider {
         position:absolute;

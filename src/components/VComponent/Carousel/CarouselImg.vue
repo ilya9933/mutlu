@@ -44,7 +44,7 @@
   
   .img {
     @apply object-cover w-full;
-    height: 120%;
+    height: 100%;
   }
 
   .info {
