@@ -36,8 +36,8 @@
     <section class="contacts">
       <ContactsBlock/>
     </section>
-    <footer>
-
+    <footer class="footer">
+      <FooterBlock/>
     </footer>
   </div>
 </template>
@@ -50,6 +50,7 @@
   import CertificateBlockComponents from './components/TheCertificateBlock/CertificateBlockComponents.vue'
   import DeliveryBlock from './components/TheDelivery/DeliveryBlock.vue'
   import ContactsBlock from './components/TheContacts/ContactsBlock.vue'
+  import FooterBlock from './components/TheFooter/FooterBlock.vue'
 
 export default {
   name: 'App',
@@ -61,6 +62,7 @@ export default {
     CertificateBlockComponents,
     DeliveryBlock,
     ContactsBlock,
+    FooterBlock,
   },
   data: () => ({
       imgPosition: 0,
@@ -119,6 +121,10 @@ export default {
 .red {
   @apply bg-red;
   height: 567px;
+}
+
+.footer {
+  @apply bg-black;
 }
 
 

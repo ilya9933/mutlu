@@ -8,9 +8,9 @@
       </VButton>
     </div>
     <div :class="$style.questions">
-      <div>Задать вопрос:</div>
-      <div>8 800 350-87-08</div>
-      <div>mutlu@absel.ru</div>
+      <div :class="$style.questionsText">Задать вопрос:</div>
+      <div :class="$style.questionsTel">8 800 350-87-08</div>
+      <div :class="$style.questionsUrl">mutlu@absel.ru</div>
     </div>
   </div>
 </template>
@@ -61,8 +61,25 @@
     border: 1px solid #D8D8D8;
     border-radius: 4px;
     margin-right: 48px;
+    padding: 22px 40px;
+    font-size: 32px;
   }
-  
-  
+
+  .questionsText {
+    font-size: 16px;
+    padding-bottom: 11px;
+    @apply text-gray-g2;
+    
+  }
+
+  .questionsTel {
+    padding-bottom: 9px;
+  }
+
+  .questionsUrl {
+    color: #0057FF;
+    text-decoration: underline;
+
+  }
   
 </style>
