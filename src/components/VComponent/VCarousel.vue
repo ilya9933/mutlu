@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="containerCarousel">
         <CarouselBlock >
             <CarouselSlide v-for="slide in slides" :key="slide.id" class="carousel-slider">
                 <CarouselImg
@@ -32,8 +32,9 @@ export default {
 </script>
 
 <style>
-    .container {
+    .containerCarousel {
         display:flex;
+        width: 100%;
         justify-content: center;
         padding: 18px 18px;
     }
@@ -78,5 +79,34 @@ export default {
         left:0;
         bottom:0;
         right:0;
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .containerCarousel {
+            padding: 0;
+
+        }
+
+        .carousel {
+            position:relative;
+            overflow: hidden;
+            width: 100%;
+            height: 343px;
+            z-index:10;
+            border-radius: 0;
+        } 
+
+        .btn-next {
+            bottom: 41%;
+            right: -2px;
+            background-color: rgba(255, 255, 255, 0.0);
+        }
+
+        .btn-prev {
+            bottom: 41%;
+            left: -1px;
+            background-color: rgba(255, 255, 255, 0.0);
+        }
     }
 </style>

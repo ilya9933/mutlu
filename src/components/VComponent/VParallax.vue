@@ -77,13 +77,13 @@
       animateElement () {
         let elTop = window.innerHeight - 150;
         let rect = this.el.getBoundingClientRect();
-        console.log((elTop >= rect.top && rect.bottom >= 250));
+        // console.log((elTop >= rect.top && rect.bottom >= 250));
         if (elTop >= rect.top && rect.bottom >= 250) {
           const parentHeight = this.$refs.block.offsetHeight
           const parallaxHeight = this.$refs.parallax.offsetHeight
           const availableOffset = parallaxHeight - parentHeight
           let animationValue = (window.pageYOffset * this.speedFactor)
-          console.log((elTop >= rect.top && rect.bottom >= 250));
+          // console.log((elTop >= rect.top && rect.bottom >= 250));
           if (animationValue <= availableOffset && animationValue >= 0) {
             this.el.style.transform = `translate3d(0, ${animationValue * this.directionValue}px ,0)`
           }

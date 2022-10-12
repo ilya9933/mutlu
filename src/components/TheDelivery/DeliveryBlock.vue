@@ -38,8 +38,8 @@
 
 <style lang="scss" module>
   .container {
-    @apply w-full mx-auto max-w-xxl text-start flex justify-between;
-    height: 462px;
+    @apply w-full mx-auto max-w-xxl text-start flex justify-between px-4;
+    min-height: 462px;
     
   }
  

@@ -50,19 +50,25 @@
     @apply p-1 border border-gray-g1 rounded w-full transition-all ease-out duration-500;
     height: 350px;
 
-    &:hover {
-      @apply border-0 ease-in duration-200;
-      height: 379px;
-      box-shadow: 0px 16px 24px -8px rgba(0, 0, 0, 0.15);
-
-      .img {
-        transform: scale(0.9);
-      }
-
-      .button {
-        @apply opacity-100 ease-in transition-opacity duration-500;
+    @media screen and (min-width: 769px) {
+      
+      &:hover {
+        @apply border-0 ease-in duration-200;
+        z-index: 111;
+        background-color: #ffff;
+        height: 379px;
+        box-shadow: 0px 16px 24px -8px rgba(0, 0, 0, 0.15);
+  
+        .img {
+          transform: scale(0.9);
+        }
+  
+        .button {
+          @apply opacity-100 ease-in transition-opacity duration-500;
+        }
       }
     }
+
   }
 
   .imgContainer {
@@ -85,6 +91,10 @@
 
   .title {
     @apply flex text-black text-xl;
+
+    & span {
+      padding-right: 10px;
+    }
   }
 
   .article {
@@ -95,6 +105,33 @@
 
   .button {
     @apply w-full opacity-0 transition-opacity ease-out duration-200;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .container {
+      height: 371px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .imgContainer {
+      height: 169px
+    }
+
+    .img {
+      transform: scale(0.94);
+    }
+
+    .text {
+      padding-bottom: 10px;
+      max-height: 192px;
+    }
+
+    .button {
+      @apply opacity-100;
+    }
   }
 
   

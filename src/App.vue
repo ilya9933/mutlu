@@ -3,40 +3,44 @@
     <HeaderComponent />
     <section class="mainBlock">
       <img class="imgSatellite" :style="{ transform: directionValue }" src="./assets/img/satellite.png" alt="satellite">
-      <VParallax id="space"
-      :speedFactor=0.3
-      >
+      <div class="parallax">
+        <VParallax id="space"
+        :speedFactor=0.3
+        >
         <img src="./assets/img/space.png" alt="space">
-      </VParallax>
+        </VParallax>
+      </div>
       <MainSection />
     </section>
-    <div class="relative parallaxFixed">
+    <div class="relative parallaxFixed parallaxDeskt">
       <VParallax id="car"
         :sectionHeight=400
         >
         <img src="./assets/img/car.png" alt="car">
       </VParallax>
     </div>
-    <section class="products">
+    <img class="parallaxMob parallaxCar" src="./assets/img/car-mob.png" alt="car">
+    <section id="products" class="products">
       <ProductsSection />
     </section>
-    <section class="red">
+    <section id="red" class="red">
       <CertificateBlockComponents />
     </section>
-    <section class="delivery">
+    <section id="delivery" class="delivery">
       <DeliveryBlock />
     </section>
-    <div class="relative parallaxFixed">
+    <div class="relative parallaxFixed parallaxDeskt">
       <VParallax id="car"
         :sectionHeight=540
         >
         <img src="./assets/img/bg.png" alt="bg">
       </VParallax>
     </div>
-    <section class="contacts">
+    <img class="parallaxMob parallaxMobBg" src="./assets/img/bg-2.png" alt="bg">
+    <section id="contacts" class="contacts">
       <ContactsBlock/>
     </section>
-    <footer class="footer">
+    <footer id="footer" class="footer">
       <FooterBlock/>
     </footer>
   </div>
@@ -99,12 +103,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  height: 10000px;
 }
 
 .mainBlock {
   position: relative;
-  height: 900px;
+  /* min-height: 900px; */
+}
+
+.parallax {
+  @apply absolute;
+  width: 100%;
+  height: 600px;
+  z-index: -2;
+
 }
 
 .parallaxFixed {
@@ -113,19 +124,58 @@ export default {
 
 .imgSatellite {
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   top: 104px;
   left: 99px;
 }
 
 .red {
   @apply bg-red;
-  height: 567px;
+  min-height: 567px;
 }
 
 .footer {
   @apply bg-black;
 }
 
+.parallaxCar {
+  object-fit: cover;
+  min-height: 261px;
+  max-height: 373px;
+  width: 100%;
+}
 
+.parallaxMobBg {
+  min-height: 264px;
+}
+
+.parallaxMob {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .imgSatellite {
+    position: absolute;
+    z-index: 0;
+    top: -9px;
+    left: -80px;
+  }
+  .parallaxDeskt {
+    display: none;
+  }
+
+  .parallaxMob {
+    display: block;
+    object-fit: cover;
+    max-height: 373px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .imgSatellite {
+    top: 50px;
+    left: 153px;
+  }
+}
 </style>

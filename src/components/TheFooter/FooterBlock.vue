@@ -15,18 +15,18 @@
       <div :class="$style.infoQuestions">
         <div :class="$style.questions">
           <div :class="$style.questionsTel">8 (800) 350-87-08</div>
-          <div :class="$style.questionsUrl">mutlu@absel.ru</div>
-        </div>
-        <div :class="$style.button">
-          <VButton >
+          <VButton :class="$style.button">
             <span>Перезвонить мне</span>
           </VButton>
+        </div>
+        <div :class="$style.questionsUrl">
+          <div >mutlu@absel.ru</div>
         </div>
       </div>
     </div>
     <div :class="$style.bottom">
       <div :class="$style.bottomFirst">
-        <div>Политика конфиденциальности</div>
+        <div :class="$style.first" >Политика конфиденциальности</div>
         <div>(с)ABSELGROUP</div>
       </div>
       <div>2022</div>
@@ -48,7 +48,7 @@
 <style lang="scss" module>
   .container {
     @apply w-full mx-auto max-w-xxl text-start flex flex-col;
-    height: 386px;
+    min-height: 386px;
     padding-top: 64px;
     padding-left: 15px;
     padding-right: 15px;
@@ -79,14 +79,14 @@
   }
 
   .infoQuestions {
-    @apply flex;
+    @apply flex flex-col;
   
   }
 
   .questions {
-    @apply text-white;
+    @apply text-white flex flex-row;
     font-size: 32px;
-    margin-right: 51px;
+    gap: 51px;
   }
   
   .questionsTel {
@@ -96,10 +96,11 @@
   .questionsUrl {
     font-size: 24px;
     text-decoration: underline;
+    @apply text-white;
   }
 
   .button {
-    padding-top: 9px;
+    transform: translateY(9px);
   }
 
   .bottom {
@@ -113,4 +114,64 @@
     width: 100%;
     max-width: 395px;
   }
+
+  .first {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .container {
+      padding-top: 44px;
+    }
+
+    .logo {
+      padding-right: 22px;
+      margin-right: 22px;
+    }
+
+    .info {
+      margin-top: 19px;
+      padding-top: 21px;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 18px;
+      padding-bottom: 21px;
+      margin-bottom: 12px;
+    }
+
+    .questions {
+      @apply flex-col;
+      gap: 6px;
+    }
+
+    .infoQuestions {
+      gap: 18px;
+    }
+
+    .questionsTel {
+      font-size: 24px;
+    }
+
+    .button {
+      transform: translateY(0);
+      width: 183px;
+    }
+
+    .questionsUrl {
+      font-size: 20px;
+    }
+
+    .bottomFirst {
+      @apply flex-col-reverse;
+      gap: 13px;
+    }
+
+    .bottom {
+      padding-bottom: 31px;
+    }
+
+  }
+
+  
 </style>

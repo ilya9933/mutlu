@@ -11,7 +11,9 @@
           <span>Получить консультацию</span>
         </VButton>
       </div>
-      <img src="../../assets/img/certificate.png" alt="certificate">
+      <div>
+        <img :class="$style.img" src="../../assets/img/certificate.png" alt="certificate">
+      </div>
     </div>
     <ul :class="$style.info">
       <li :class="$style.infoBlock">
@@ -65,6 +67,11 @@
     padding-top: 21px;
     line-height: 41.6px;
     padding-bottom: 35px;
+    margin-right: 30px;
+  }
+
+  .img {
+    margin: 0 auto auto
   }
 
   .info {
@@ -73,6 +80,7 @@
     font-size: 13px;
     margin-top: 32px;
     gap: 64px;
+    padding-bottom: 60px;
   }
 
   .infoBlock {
@@ -85,5 +93,36 @@
 
   .description {
     padding-top: 9px;
+  }
+
+  @media screen and (max-width: 1000px) {
+
+    .container {
+      padding-top: 20px
+    }
+
+    .main {
+      @apply flex-col;
+      font-size: 20px;
+      row-gap: 38px;
+    }
+
+    .title {
+      line-height: 26px;
+      padding-bottom: 18px;
+    }
+
+    .info {
+      @apply flex-col border-0 mt-0;
+      padding-right: 5px;
+      row-gap: 16px;
+      padding-bottom: 39px;
+    }
+
+    .infoBlock {
+      max-width: none;
+      @apply border-b border-white border-opacity-40;
+      padding-bottom: 16px;
+    }
   }
 </style>

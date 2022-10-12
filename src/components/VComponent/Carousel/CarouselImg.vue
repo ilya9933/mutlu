@@ -60,6 +60,26 @@
     max-width: 675px;
     font-size: 32px;
     line-height: 40px;
+    margin-right: 170px;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .info {
+      padding: 16px;
+    }
+
+    .title {
+      font-size: 20px;
+      line-height: 26px;
+      margin-right: 24px;
+      bottom: 16px;
+    }
+
+    .svg {
+      @apply pt-0;
+      top: 32px;
+    }
   }
   
 </style>

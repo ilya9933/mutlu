@@ -17,7 +17,7 @@
          />
       
     </div>
-    <VCarousel
+    <VCarousel id="carousel"
     :class="$style.carousel"
     :slides="slides"
     />
@@ -130,6 +130,7 @@
 
   .text {
     max-width: 687px;
+    margin-right: 30px;
   }
 
   .textH2 {
@@ -155,5 +156,78 @@
 
   .button {
     @apply mt-auto;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1000px) {
+    .products {
+      justify-content: center;
+      gap: 18px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      padding-top: 45px;
+      padding-bottom: 383px;
+    }
+    
+    .title {
+      @apply flex-col;
+      max-width: none;
+    }
+
+    .text {
+      margin-right: 0;
+    }
+
+    .textH2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .button {
+      margin-top: 20px;
+      margin-right: auto;
+    }
+
+    .products {
+      padding-top: 18px;
+      display: grid;
+      grid-gap: 16px;
+      grid-template-columns: repeat(auto-fill, 242px);
+      grid-auto-flow: column;
+      grid-auto-columns: 242px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-right: -17px;
+      padding-bottom: 17px;
+
+      &::-webkit-scrollbar {
+        margin-right: 16px;
+        padding-right: 16px;
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        @apply bg-gray-g1 rounded;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        @apply bg-red rounded;
+      }
+    }
+
+    .carousel {
+      position: absolute;
+      margin-left: -16px;
+      border-radius: 0;
+      border-width: 0;
+    }
+
   }
 </style>

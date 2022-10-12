@@ -5,17 +5,16 @@
       <ul :class="$style.nav">
         <li v-for="(tab, i) in tabs"
           :key="`tab-${i}`"
-          :class="[$style.button, {[$style.active]: id === tab.id}]"
+          :class="[{[$style.active]: id === tab.id}]"
           >
-          <button @click.prevent="id = tab.id">
+          <button :class="$style.button" @click.prevent="id = tab.id">
             {{tab.title}}
           </button>
         </li>
       </ul>
-      <div>{{text}}</div>
+      <div :class="$style.des">{{text}}</div>
     </div>
     <img :class="$style.img" :src="img" alt="gazelle">
-    
   </div>
 </template>
 
@@ -63,13 +62,13 @@
 
 
   .text {
-    padding-left: 15px;
     padding-top: 54px;
   }
 
   .img {
-    height: 330px;
-    margin: auto 17px auto 0px;
+    width: 600px;
+    margin: auto;
+    padding-bottom: 20px;
   }
 
   .title {
@@ -82,6 +81,13 @@
     gap: 25px;
     height: 43px;
     margin-bottom: 39px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &:-webkit-scrollbar { 
+      width: 0; 
+    }
+
   }
 
   .active {
@@ -89,7 +95,38 @@
     border-bottom-width: 2px;
     border-radius: 1px;
   }
+
+  .button {
+    @apply whitespace-nowrap;
+  }
   
+  @media screen and (max-width: 1000px) {
+
+    .container {
+      @apply flex-col;
+    }
+
+    .text {
+      padding-top: 28px;
+    }
+
+    .title {
+      padding-bottom: 31px;
+      font-size: 32px;
+    }
+
+    .nav {
+      height: 40px;
+      margin-bottom: 20px;
+    }
+
+    .des {
+      margin-bottom: 50px;
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+  }
   
   
 </style>
