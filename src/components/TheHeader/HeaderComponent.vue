@@ -3,18 +3,18 @@
     <div :class="$style.logo">
       <img :class="$style.img" src="../../assets/svg/logo.svg" />
     </div>
-    <ul :class="[$style.links, $style.desct, {[$style.mobileNav]:  mobileHeaderMenu}]">
+    <ul :class="[$style.links, $style.linksDesct, {[$style.mobileNav]:  mobileHeaderMenu}]">
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="[$style.text, $style.main]" href="#products">Продукция</a>
+        <a :class="[$style.text, $style.main]" href="#products" @click="mobileHeaderMenu = false">Продукция</a>
       </li>
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="$style.text" href="#carousel">О MUTLU</a>
+        <a :class="$style.text" href="#carousel" @click="mobileHeaderMenu = false">О MUTLU</a>
       </li>
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="$style.text" href="#red">О нас</a>
+        <a :class="$style.text" href="#red" @click="mobileHeaderMenu = false">О нас</a>
       </li>
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="$style.text" href="#delivery">Доставка</a>
+        <a :class="$style.text" href="#delivery" @click="mobileHeaderMenu = false">Доставка</a>
       </li>
     </ul>
     <div :class="$style.info">
@@ -85,7 +85,7 @@
   }
 
   .links {
-    @apply uppercase flex items-center h-full;
+    @apply uppercase flex items-center h-full transition-all duration-100 ease-in-out;
     margin-right: -54px;
   }
 
@@ -116,7 +116,7 @@
 
   .burger {
     width: 49px;
-    max-height: 60px;
+    height: 60px;
     position: relative;
 
     &::after,
@@ -175,8 +175,11 @@
   .hoverAnimation {
     @apply text-black-d1;
     transition: background 0.3s ease-in-out;
-    &:hover {
-      background: linear-gradient(180deg, rgba(239, 239, 238, 0) 0%, #EFEFEE 100%);
+
+    @media screen and (min-width: 1001px) {
+      &:hover {
+        background: linear-gradient(180deg, rgba(239, 239, 238, 0) 0%, #EFEFEE 100%);
+      }
     }
   }
 
@@ -189,6 +192,8 @@
 
     .mobileNavOpen {
       height: 100vh;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
 
       & .logo {
         display: none;
@@ -197,16 +202,28 @@
       & .tel {
         height: 0;
         opacity: 0;
+        display: none;
       }
       
       & .burger {
-        width: 59px;
+        width: 49px;
+        margin-left: auto;
       }
 
     }
 
     .desct {
       display: none;
+      opacity: 0;
+    }
+
+    .linksDesct {
+      @apply flex-col absolute transition-opacity duration-100;
+      width: 0;
+      top: -1000px;
+      height: 0;
+      opacity: 0;
+      z-index: -9;
     }
 
     .logo {
@@ -215,32 +232,33 @@
       max-height: 60px;
     }
 
+    .mob {
+      display: block;
+    }
+
+    .linksButton {
+      @apply block border-b border-gray;
+      height: auto;
+      padding: 21px 0 26px;
+      margin: 0px 16px 5px;
+    }
+
+    .text {
+      font-size: 24px;
+      text-transform: none;
+      letter-spacing: -0.1px;
+    }
+
     .tel {
       font-size: 14px;
       max-height: 60px;
       @apply border-0 pr-2 transition-all duration-300 ease-in-out;
     }
 
-    .mob {
-      display: block;
-    }
-
     .mobileNav {
-      @apply block flex-col w-full justify-between;
-      margin-top: 50px;
-
-
-      & .linksButton {
-        @apply block border-b border-gray;
-        height: auto;
-        padding: 25px 15px;
-      }
-
-      & .text {
-        font-size: 24px;
-        text-transform: none;
-      }
-      
+      @apply block w-full relative justify-between opacity-100 transition-all duration-500 ease-in-out;
+      margin-top: -10px;
+      top: 0;
     }
 
   }
