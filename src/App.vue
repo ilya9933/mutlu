@@ -43,6 +43,7 @@
     <footer id="footer" class="footer">
       <FooterBlock/>
     </footer>
+    <VModal v-show="showModal" @close-modal="showModal = false"/>
   </div>
 </template>
 
@@ -55,6 +56,7 @@
   import DeliveryBlock from './components/TheDelivery/DeliveryBlock.vue'
   import ContactsBlock from './components/TheContacts/ContactsBlock.vue'
   import FooterBlock from './components/TheFooter/FooterBlock.vue'
+  import VModal from './components/VComponent/VModal.vue'
 
 export default {
   name: 'App',
@@ -67,12 +69,19 @@ export default {
     DeliveryBlock,
     ContactsBlock,
     FooterBlock,
+    VModal,
   },
   data: () => ({
+      width: null,
       imgPosition: 0,
       lastScrollPosition: 0,
       scrollOffset: 40,
+      showModal: false,
     }),
+    created () {
+      window.addEventListener('resize', this.updateWidth)
+      this.updateWidth()
+    },
     mounted() {
       this.lastScrollPosition = window.pageYOffset
       window.addEventListener('scroll', this.onScroll)
@@ -83,16 +92,26 @@ export default {
     computed: {
       directionValue () {
         return `translate(${this.imgPosition * 0.9}px ,${this.imgPosition * 0.3}%)`
+      },
+      isDesktop () {
+        return this.width > 1000
       }
     },
     methods: {
-      // Toggle if navigation is shown or hidden
       onScroll() {
-        if (this.lastScrollPosition < 250) {
-          
-          this.imgPosition = this.lastScrollPosition
+        if (this.isDesktop) {
+
+          if (this.lastScrollPosition < 250) {
+            
+            this.imgPosition = this.lastScrollPosition
+          } 
+          this.lastScrollPosition = window.pageYOffset
+        } else {
+          this.imgPosition = 0
         }
-        this.lastScrollPosition = window.pageYOffset
+      },
+      updateWidth () {
+        this.width = window.innerWidth
       },
     }
 }
@@ -107,6 +126,7 @@ export default {
 
 .mainBlock {
   position: relative;
+  overflow-x: hidden;
   /* min-height: 900px; */
 }
 
@@ -156,10 +176,10 @@ export default {
 @media screen and (max-width: 1000px) {
   .imgSatellite {
     position: absolute;
-    z-index: 0;
-    top: -9px;
-    left: -80px;
+    top: 60px;
+    left: 6px;
   }
+
   .parallaxDeskt {
     display: none;
   }
@@ -174,8 +194,10 @@ export default {
 
 @media screen and (max-width: 768px) {
   .imgSatellite {
-    top: 50px;
-    left: 153px;
+    width: 236px;
+    top: 49px;
+    left: auto;
+    right: -28px;
   }
 }
 </style>

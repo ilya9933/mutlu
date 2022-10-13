@@ -20,7 +20,7 @@
 
 <style lang="scss" module>
   .button {
-    @apply py-3 px-6 border rounded whitespace-nowrap ease-in-out transition-colors duration-300;
+    @apply py-3 px-6 border rounded whitespace-nowrap ease-in-out transition-colors duration-300 w-auto h-auto;
     font-size: 16px;
 
   }
