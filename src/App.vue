@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponent />
+    <HeaderComponent @open-modal="showModal = true"/>
     <section class="mainBlock">
       <img class="imgSatellite" :style="{ transform: directionValue }" src="./assets/img/satellite.png" alt="satellite">
       <div class="parallax">
@@ -10,7 +10,7 @@
         <img src="./assets/img/space.png" alt="space">
         </VParallax>
       </div>
-      <MainSection />
+      <MainSection @open-modal="showModal = true"/>
     </section>
     <div class="relative parallaxFixed parallaxDeskt">
       <VParallax id="car"
@@ -21,10 +21,10 @@
     </div>
     <img class="parallaxMob parallaxCar" src="./assets/img/car-mob.png" alt="car">
     <section id="products" class="products">
-      <ProductsSection />
+      <ProductsSection @open-modal="showModal = true"/>
     </section>
     <section id="red" class="red">
-      <CertificateBlockComponents />
+      <CertificateBlockComponents @open-modal="showModal = true"/>
     </section>
     <section id="delivery" class="delivery">
       <DeliveryBlock />
@@ -38,10 +38,10 @@
     </div>
     <img class="parallaxMob parallaxMobBg" src="./assets/img/bg-2.png" alt="bg">
     <section id="contacts" class="contacts">
-      <ContactsBlock/>
+      <ContactsBlock @open-modal="showModal = true"/>
     </section>
     <footer id="footer" class="footer">
-      <FooterBlock/>
+      <FooterBlock @open-modal="showModal = true"/>
     </footer>
     <VModal v-show="showModal" @close-modal="showModal = false"/>
   </div>

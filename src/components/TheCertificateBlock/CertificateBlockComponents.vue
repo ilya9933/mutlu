@@ -7,6 +7,7 @@
         </h2>
         <VButton 
           :themeWhite=true
+          @click.native="openModal()"
         >
           <span>Получить консультацию</span>
         </VButton>
@@ -45,6 +46,11 @@
     components: {
       VButton,
     },
+    methods: {
+      openModal() {
+        this.$emit('open-modal')
+      }
+    }
   } 
 </script>
 

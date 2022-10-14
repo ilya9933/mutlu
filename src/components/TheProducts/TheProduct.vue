@@ -13,7 +13,7 @@
           {{products.article}}
         </div>
       </div>
-      <VButton :class="$style.button">
+      <VButton :class="$style.button" @click.native="openModal()">
         <span>Запросить стоимость</span>
       </VButton>
     </div>
@@ -38,10 +38,15 @@
     return {
       img: null,
     }
-  },
-  mounted() {
-    this.img = require(`../../assets/img/${this.products.img}`)
-  },
+    },
+    mounted() {
+      this.img = require(`../../assets/img/${this.products.img}`)
+    },
+    methods: {
+      openModal() {
+        this.$emit('open-modal')
+      }
+    }
   } 
 </script>
 
@@ -54,7 +59,7 @@
       
       &:hover {
         @apply border-0 ease-in duration-200;
-        z-index: 111;
+        z-index: 1;
         background-color: #ffff;
         height: 379px;
         box-shadow: 0px 16px 24px -8px rgba(0, 0, 0, 0.15);

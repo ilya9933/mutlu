@@ -1,10 +1,32 @@
 <template>
   <div :class="$style.containerOverlay" @click.self="closeModal()">
-    <div :class="$style.container" >
-      <div>
-      </div>
-      <div>
-        
+    <div :class="$style.container">
+      <div :class="$style.contante">
+        <div :class="[$style.info, $style.infoRight]"></div>
+        <div :class="$style.info">
+          <form @submit.prevent="clickButton" :class="$style.form">
+            <VInput v-bind:id="form.name.id" :title="form.name.title" v-model="form.name.value"
+            />
+            <VInput
+            v-model="form.telephone"
+            title='Телефон'
+            />
+            <VInput
+            v-model="form.city"
+            title='Город'
+            />
+            <div>
+              
+            </div>
+            <div>
+              
+            </div>
+            <div>
+              
+            </div>
+            <input type="submit"  value="Send message" :class="$style.button" />
+          </form>
+        </div>
       </div>
       <div :class="$style.buttonClose" @click="closeModal()">
         <div :class="$style.cross"/>
@@ -14,13 +36,33 @@
 </template>
 
 <script>
+import VInput from './VInput'
 
 export default {
   name: 'VModal',
+  components: {
+    VInput,
+  },
 
   data() {
     return {
-
+      form: {
+        name: {
+          value: "",
+          title: 'Имя',
+          id: "name"
+        },
+        telephone: {
+          value: "",
+          title: 'Телефон',
+          id: 'telephone'
+        },
+        city: {
+          value: "",
+          title: 'Город',
+          id: 'city'
+        }
+      },
     }
   },
 
@@ -39,68 +81,64 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #000000da;
-  transition: 0.3s;
+  z-index: 99;
+  background-color: rgba(23, 23, 23, 0.95);
+  @apply transition-all duration-500 ease-in-out flex justify-center;
 }
 
 .container {
   position: relative;
   text-align: center;
-  background-color: white;
-  height: calc(100vh - 100px);
-  min-height: 500px;
+  max-height: 352px;
   width: 100vw;
-  max-width: 500px;
-  margin: 100px 0 auto 0;
-  padding: 60px 30px;
-  border-radius: 20px;
+  max-width: 997px;
+  margin: auto;
+  overflow: hidden;
+  @apply h-full w-full bg-white border border-gray m-auto rounded;
 }
+
+.contante {
+  @apply flex w-full h-full;
+}
+
+.info {
+  @apply w-full h-full
+}
+
+.infoRight {
+  width: calc(100% + 50px);
+}
+
 .buttonClose {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 37px;
+  right: 36.5px;
   cursor: pointer;
-  background-color: #ac003e;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  width: 28px;
+  height: 28px;
 }
 
 .cross {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: 1s;
+  @apply transition-all duration-1000 ease-in-out;
 
-  &::before {
-    content: "";
-    position: absolute;
-    height: 2px;
-    width: 15px;
-    background-color: white;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-    transform: rotate(45deg);
-  }
-
+  &::before,
   &::after {
     content: "";
     position: absolute;
     height: 2px;
-    width: 15px;
-    background-color: white;
+    width: 28px;
     margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
+    @apply bg-black rounded top-0 bottom-0 left-0 right-0;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
     transform: rotate(-45deg);
   }
 
@@ -109,80 +147,4 @@ export default {
   }
 }
 
-.wrapper {
-  display: flex;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 6px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 16px;
-
-  .checkmark {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto 0;
-    height: 21px;
-    width: 21px;
-    border-radius: 5px;
-    background-color: #eee;
-    border: 1px solid #ccc;
-
-    &::after {
-      content: "";
-      position: absolute;
-      display: none;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      width: 8px;
-      height: 8px;
-      border-radius: 5px;
-      background: white;
-    }
-  }
-
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-
-    &:checked ~ .checkmark {
-      background-color: #ac003e;
-      
-      &:after {
-        display: block;
-      }
-    }
-  }
-
-  &:hover {
-    input ~ .checkmark {
-      background-color: #ccc;
-    } 
-  }
-}
-
-
-
-
-button {
-  background-color: #ac003e;
-  width: 150px;
-  height: 40px;
-  color: white;
-  font-size: 14px;
-  border-radius: 16px;
-  margin-top: 50px;
-}
 </style>

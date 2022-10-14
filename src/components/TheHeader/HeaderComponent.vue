@@ -19,7 +19,7 @@
     </ul>
     <div :class="$style.info">
       <div :class="[$style.content, $style.text, $style.tel]">8 (800) 350-87-08</div>
-      <button :class="[$style.content, $style.hoverAnimation, $style.desct]" ><img :class="$style.img" src="../../assets/svg/union.svg" /></button>
+      <button :class="[$style.content, $style.hoverAnimation, $style.desct]" @click="openModal()"><img :class="$style.img" src="../../assets/svg/union.svg" /></button>
       <button :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct]"><img :class="$style.img" src="../../assets/svg/message.svg" /></button>
       <button :class="[$style.burger, $style.mob, {[$style.active]: mobileHeaderMenu}]" @click="mobileHeaderMenu = !mobileHeaderMenu"></button>
     </div>
@@ -44,7 +44,6 @@
     window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
-    // Toggle if navigation is shown or hidden
     onScroll() {
       if (window.pageYOffset < 0) {
         return
@@ -55,6 +54,9 @@
       this.showHeader = window.pageYOffset < this.lastScrollPosition
       this.lastScrollPosition = window.pageYOffset
     },
+    openModal() {
+      this.$emit('open-modal')
+    }
   }
 
 }

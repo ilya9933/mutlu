@@ -15,7 +15,7 @@
       <div :class="$style.infoQuestions">
         <div :class="$style.questions">
           <div :class="$style.questionsTel">8 (800) 350-87-08</div>
-          <VButton :class="$style.button">
+          <VButton :class="$style.button" @click.native="openModal()">
             <span>Перезвонить мне</span>
           </VButton>
         </div>
@@ -42,6 +42,11 @@
       components: {
       VButton,
     },
+    methods: {
+      openModal() {
+        this.$emit('open-modal')
+      }
+    }
   } 
 </script>
 

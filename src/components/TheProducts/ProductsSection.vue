@@ -5,7 +5,7 @@
         <h2 :class="$style.textH2">Популярные товары</h2>
         <div :class="$style.description">Компания ABSELGROUP является официальным дистрибьютором  аккумуляторных батарей MUTLU. Мы предлагаем широкий ассортимент с гарантией на аккумуляторы для легковых автомобилей 24 месяца (до 100 Ач, включительно), для грузовых - 12 месяцев.</div>
       </div>
-      <VButton :class="$style.button">
+      <VButton :class="$style.button" @click.native="openModal()">
         <span>Запросить полный каталог</span>
       </VButton>
     </div>
@@ -14,6 +14,7 @@
         v-for="(product, i) in products"
         :key="`${product.id}-product-${i}`"
         :products=product
+        @open-modal="openModal()"
          />
       
     </div>
@@ -113,6 +114,11 @@
         },
       ]
     }),
+    methods: {
+      openModal() {
+        this.$emit('open-modal')
+      }
+    }
   } 
 </script>
 

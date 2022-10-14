@@ -3,7 +3,7 @@
     <div :class="$style.main">
       <h1 :class="$style.mainText">Аккумуляторы MUTLU оптом</h1>
       <div :class="$style.mainDescription">с бесплатной доставкой в 170 городов России</div>
-      <VButton :class="$style.button">
+      <VButton :class="$style.button" @click.native="openModal()">
         <span>Запросить каталог</span>
       </VButton>
     </div>
@@ -34,7 +34,7 @@
       </li>
     </ul>
     <div :class="$style.buttonBot">
-      <VButton :class="$style.button" :style="{ margin: 'auto' }">
+      <VButton :class="$style.button" :style="{ margin: 'auto' }" @click.native="openModal()">
         <span>Получить консультацию</span>
       </VButton>
     </div>
@@ -67,7 +67,6 @@
       window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
-      // Toggle if navigation is shown or hidden
       onScroll() {
         if (this.lastScrollPosition < 112) {
           
@@ -75,6 +74,9 @@
         }
         this.lastScrollPosition = window.pageYOffset
       },
+      openModal() {
+        this.$emit('open-modal')
+      }
     }
   } 
 </script>

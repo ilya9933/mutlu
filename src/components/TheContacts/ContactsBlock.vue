@@ -3,7 +3,7 @@
     <div :class="$style.text">
       <h2 :class="$style.title">ABSELGROUP - ваш надежный<br> поставщик аккумуляторов MUTLU!</h2>
       <div :class="$style.description">Поможем с подбором и проконсультируем по всем вопросам сотрудничества.</div>
-      <VButton :class="$style.button">
+      <VButton :class="$style.button" @click.native="openModal()">
         <span>Оставить контакты</span>
       </VButton>
     </div>
@@ -20,9 +20,14 @@
 
   export default {
     name: 'ContactsBlock',
-      components: {
+    components: {
       VButton,
     },
+    methods: {
+      openModal() {
+        this.$emit('open-modal')
+      }
+    }
   } 
 </script>
 
