@@ -8,6 +8,10 @@
           <img :class="$style.img" src="../../assets/img/modal-img.png" alt="modal-img">
         </div>
         <div :class="$style.info">
+          <div :class="$style.infoText">
+            <div :class="$style.title">Оставьте контакты</div>
+            <div :class="$style.text">с вами свяжется наш специалист</div>
+          </div>
           <form @submit.prevent="clickButton" :class="$style.form">
             <VInput v-for="(input, i) in form"
               :key="`${input.id}-input-${i}`" 
@@ -199,6 +203,60 @@ export default {
 
 .button {
   width: min-content;
+}
+
+.infoText {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    max-height: none;
+    height: 100vh;
+    border-radius: 0; 
+  }
+  .contante {
+    @apply flex-col-reverse;
+  }
+
+  .buttonClose {
+    top: 29px;
+    right: 13.5px;
+  }
+
+  .info {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 77px;
+  }
+
+  .infoText {
+    display: block;
+    text-align: start;
+    padding-bottom: 23px;
+  }
+
+  .title {
+    font-size: 24px;
+    padding-bottom: 9px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+
+  .infoRight {
+    height: 65%;
+
+    & div {
+      display: none;
+    }
+
+    & .img {
+      height: 204px;
+    }
+  }
 }
 
 </style>
