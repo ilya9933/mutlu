@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <!-- <input-mask v-if="type === 'tel'" :type="type" v-model="maskedInputValue" mask="+7 (999) 99 99" maskChar="_" :id="id" :class="[$style.input, {[$style.hasValue]: hasValue, [$style.noValidation]: !validation}]" @input="handleInput"></input-mask> -->
-    <input :type="type" :value="value" :id="id" :class="[$style.input, {[$style.hasValue]: hasValue, [$style.noValidation]: !validation}]" @input="handleInput">
+    <input :type="type" :value="value" :id="id" :disabled="disabled" :class="[$style.input, {[$style.hasValue]: hasValue, [$style.noValidation]: !validation}]" @input="handleInput">
     <label :for="id" :class="$style.label">{{ title }}</label>
   </div>
 </template>
@@ -39,6 +39,11 @@
       validation: {
         type: Boolean,
         default: true,
+        required: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false,
         required: false
       }
     },

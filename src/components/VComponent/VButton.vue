@@ -1,5 +1,5 @@
 <template>
-  <button :class="[$style.button, {[$style.themeWhite]: themeWhite, [$style.themeRed]: !themeWhite}]">
+  <button :disabled="disabled" :class="[$style.button, {[$style.themeWhite]: themeWhite, [$style.themeRed]: !themeWhite}]">
     <slot></slot>
   </button>
 </template>
@@ -17,6 +17,11 @@
       type: {
         type: String,
         default: 'button',
+        required: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false,
         required: false
       }
     },

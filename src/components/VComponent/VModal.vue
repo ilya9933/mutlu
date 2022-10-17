@@ -19,9 +19,10 @@
               :title="input.title"
               :type="input.type"
               :validation="input.validation"
+              :disabled="buttonDis"
               v-model="input.value"
             />
-            <VButton type='submit' :class="$style.button">
+            <VButton type='submit' :disabled="buttonDis" :class="$style.button">
               <span>Отправить заявку</span>
             </VButton>
             <!-- <input type="submit"  value="Отправить заявку" :class="$style.button" /> -->
@@ -39,6 +40,7 @@
 <script>
 import VInput from './VInput'
 import VButton from './VButton.vue'
+import axios from 'axios'
 
 export default {
   name: 'VModal',
@@ -71,6 +73,8 @@ export default {
         }
       },
       emptyField: false,
+      buttonDis: false,
+      endpoint: 'https://......',
     }
   },
 
@@ -100,8 +104,26 @@ export default {
       this.submitForm()
     },
     async submitForm() {
-      this.closeModal()
-    },
+      this.buttonDis = true
+      const data = {
+        name: this.form.name.value,
+        email: this.form.city.value,
+        message: this.form.telephone.value,
+      }
+      try {
+        await axios.post(this.endpoint, data)
+        this.form.name.value = ''
+        this.form.city.value = ''
+        this.form.telephone.value = ''
+        this.buttonDis = false
+        this.messageSent = true
+        this.closeModal()
+      } catch (error) {
+        this.buttonDis = false
+        console.log(error)
+        alert('Something went wrong, please try again =)')
+      }
+    }
   },
 }
 </script>
