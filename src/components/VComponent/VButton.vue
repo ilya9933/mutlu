@@ -14,6 +14,11 @@
         type: Boolean,
         required: false
       },
+      type: {
+        type: String,
+        default: 'button',
+        required: false
+      }
     },
   } 
 </script>

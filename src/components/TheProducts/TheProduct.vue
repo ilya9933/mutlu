@@ -7,7 +7,7 @@
       <div>
         <div :class="$style.title">
           <span>{{ products.title }}</span>
-          <img src="../../assets/svg/cop.svg" alt="cop">
+          <img :class="$style.cop" src="../../assets/svg/cop.svg" alt="cop" @click="copy">
         </div>
         <div :class="$style.article">
           {{products.article}}
@@ -45,6 +45,9 @@
     methods: {
       openModal() {
         this.$emit('open-modal')
+      },
+      copy() {
+        navigator.clipboard.writeText(this.products.title + this.products.article)
       }
     }
   } 
@@ -106,6 +109,11 @@
     @apply text-gray-g2;
     padding-top: 4px;
     font-size: 13px;
+  }
+
+  .cop {
+    cursor: pointer;
+    filter: contrast(0.1)
   }
 
   .button {

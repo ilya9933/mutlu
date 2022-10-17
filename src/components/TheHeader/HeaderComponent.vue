@@ -16,21 +16,34 @@
       <li :class="[$style.linksButton, $style.hoverAnimation]">
         <a :class="$style.text" href="#delivery" @click="mobileHeaderMenu = false">Доставка</a>
       </li>
+      <div v-if="mobileHeaderMenu" :class="[$style.infoMob, $style.mob, {[$style.active]: mobileHeaderMenu}]">
+      <div :class="$style.questions">
+        <div :class="$style.questionsTel">8 (800) 350-87-08</div>
+        <VButton :class="$style.button" @click.native="openModal()">
+          <span>Перезвонить мне</span>
+        </VButton>
+        <div :class="$style.questionsUrl">mutlu@absel.ru</div>
+      </div>
+    </div>
     </ul>
     <div :class="$style.info">
       <div :class="[$style.content, $style.text, $style.tel]">8 (800) 350-87-08</div>
       <button :class="[$style.content, $style.hoverAnimation, $style.desct]" @click="openModal()"><img :class="$style.img" src="../../assets/svg/union.svg" /></button>
-      <button :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct]"><img :class="$style.img" src="../../assets/svg/message.svg" /></button>
+      <button :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct]" @click="copy"><img :class="$style.img" src="../../assets/svg/message.svg" /></button>
       <button :class="[$style.burger, $style.mob, {[$style.active]: mobileHeaderMenu}]" @click="mobileHeaderMenu = !mobileHeaderMenu"></button>
     </div>
   </header>
 </template>
 
 <script>
+import VButton from '../VComponent/VButton.vue'
 
   export default {
-    name: 'HeaderComponent',
-    data: () => ({
+  name: 'HeaderComponent',
+  components: {
+    VButton
+  },
+  data: () => ({
     mobileHeaderMenu: false,
     showHeader: true,
     lastScrollPosition: 0,
@@ -56,6 +69,9 @@
     },
     openModal() {
       this.$emit('open-modal')
+    },
+    copy() {
+      navigator.clipboard.writeText("mutlu@absel.ru")
     }
   }
 
@@ -183,6 +199,33 @@
         background: linear-gradient(180deg, rgba(239, 239, 238, 0) 0%, #EFEFEE 100%);
       }
     }
+  }
+
+  .infoMob {
+    position: fixed;
+    bottom: 0;
+  }
+
+  .questions {
+    @apply text-black flex flex-col w-screen bg-gray-g1;
+    font-size: 24px;
+    gap: 17px;
+    padding-left: 16px;
+    padding-bottom: 40px;
+    padding-top: 17px;
+    text-align: start;
+    align-items: flex-start;
+  }
+  
+  .questionsTel {
+    padding-bottom: 2px;
+  }
+
+  .questionsUrl {
+    font-size: 20px;
+    text-decoration: underline;
+    text-transform: lowercase;
+    color: #0057FF;
   }
 
 
