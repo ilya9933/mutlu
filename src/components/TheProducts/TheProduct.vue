@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.container">
+  <div :class="[$style.container, {[$style.show] : isShow}]">
     <div :class="$style.imgContainer">
       <img :class="$style.img" :src="img" :alt="products.title">
     </div>
@@ -37,6 +37,7 @@
     data() {
     return {
       img: null,
+      isShow: false
     }
     },
     mounted() {
@@ -55,8 +56,12 @@
 
 <style lang="scss" module>
   .container {
-    @apply p-1 border border-gray-g1 rounded w-full transition-all ease-out duration-500;
+    @apply p-1 border border-gray-g1 rounded w-full transition-all ease-out duration-500 opacity-0 translate-y-4;
     height: 350px;
+
+    &.show {
+      @apply opacity-100 translate-y-0 transition-all ease-in duration-700;
+    }
 
     @media screen and (min-width: 769px) {
       
@@ -112,8 +117,11 @@
   }
 
   .cop {
-    cursor: pointer;
-    filter: contrast(0.1)
+    @apply transition-all ease-in-out duration-300;
+
+    &:hover{
+      filter: contrast(0.1)
+    }
   }
 
   .button {

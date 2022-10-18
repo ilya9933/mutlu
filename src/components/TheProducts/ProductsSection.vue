@@ -9,18 +9,20 @@
         <span>Запросить полный каталог</span>
       </VButton>
     </div>
-    <div :class="$style.products" >
-        <VProduct
-        v-for="(product, i) in products"
-        :key="`${product.id}-product-${i}`"
+    <div :class="$style.products">
+      <VProduct
+        v-for="product in products"
+        :key="product.id"
         :products=product
+        :ref="product.id"
         @open-modal="openModal()"
-         />
+      />
       
     </div>
-    <VCarousel id="carousel"
-    :class="$style.carousel"
-    :slides="slides"
+    <VCarousel 
+      id="carousel"
+      :class="$style.carousel"
+      :slides="slides"
     />
   </div>
 </template>
@@ -38,6 +40,7 @@
       VCarousel,
     },
     data: () => ({
+      lastScrollPosition: 0,
       products: [
         {
           id: 1,
@@ -117,8 +120,28 @@
     methods: {
       openModal() {
         this.$emit('open-modal')
-      }
-    }
+      },
+      onScroll() {
+        Object.entries(this.$refs).forEach(([key, value]) => {
+          const rect = value[0].$el.getBoundingClientRect()
+          console.log(key);
+
+          const isItemActive =  rect.top - window.innerHeight + 200 < 0
+
+
+          if (isItemActive) {
+            value[0].isShow = true
+          }
+        })
+      },
+    },
+    mounted() {
+      this.lastScrollPosition = window.pageYOffset
+      window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
   } 
 </script>
 

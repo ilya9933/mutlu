@@ -14,7 +14,9 @@
       </ul>
       <div :class="$style.des">{{text}}</div>
     </div>
-    <img :class="$style.img" :src="img" alt="gazelle">
+    <transition name="list" mode="out-in">
+      <img :class="$style.img" :src="img" alt="gazelle">
+    </transition>
   </div>
 </template>
 
@@ -60,6 +62,15 @@
     font-size: 16px;
   }
 
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+
+  .list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
 
   .text {
     padding-top: 54px;
@@ -83,6 +94,10 @@
     margin-bottom: 39px;
     overflow-x: auto;
     overflow-y: hidden;
+
+    & li {
+      @apply transition-all ease-in-out duration-300;
+    }
 
     &:-webkit-scrollbar { 
       width: 0; 

@@ -28,8 +28,8 @@
     </ul>
     <div :class="$style.info">
       <div :class="[$style.content, $style.text, $style.tel]">8 (800) 350-87-08</div>
-      <button :class="[$style.content, $style.hoverAnimation, $style.desct]" @click="openModal()"><img :class="$style.img" src="../../assets/svg/union.svg" /></button>
-      <button :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct]" @click="copy"><img :class="$style.img" src="../../assets/svg/message.svg" /></button>
+      <button :class="[$style.content, $style.hoverAnimation, $style.desct, $style.delay]" data-title="связаться с менеджером" @click="openModal()"><img :class="$style.img" src="../../assets/svg/union.svg" /></button>
+      <button :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct, {[$style.delay] : addresCopy}]" data-title="адрес почты скопирован" @click="copy"><img :class="$style.img" src="../../assets/svg/message.svg" /></button>
       <button :class="[$style.burger, $style.mob, {[$style.active]: mobileHeaderMenu}]" @click="mobileHeaderMenu = !mobileHeaderMenu"></button>
     </div>
   </header>
@@ -48,6 +48,7 @@ import VButton from '../VComponent/VButton.vue'
     showHeader: true,
     lastScrollPosition: 0,
     scrollOffset: 40,
+    addresCopy: false,
   }),
   mounted() {
     this.lastScrollPosition = window.pageYOffset
@@ -72,6 +73,7 @@ import VButton from '../VComponent/VButton.vue'
     },
     copy() {
       navigator.clipboard.writeText("mutlu@absel.ru")
+      this.addresCopy = true
     }
   }
 
@@ -125,6 +127,22 @@ import VButton from '../VComponent/VButton.vue'
 
   .copy {
     cursor: copy;
+  }
+
+  .delay {
+    position: relative;
+
+    &::after {
+      content: attr(data-title); 
+      @apply rounded  right-0 bottom-0 translate-y-9 absolute whitespace-nowrap transition-all ease-in-out duration-500 -z-10 invisible opacity-0;
+      background: rgba(219, 219, 219, 0.9);
+      font-size: 14px; 
+      padding: 5px 10px;
+    }
+
+    &:hover::after {
+      @apply z-10 visible translate-y-5 opacity-100 delay-1000;
+    }
   }
 
   .mob {

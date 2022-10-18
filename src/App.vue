@@ -144,6 +144,7 @@ export default {
 }
 
 .imgSatellite {
+  @apply transition-all duration-1000 ease-linear;
   position: absolute;
   z-index: -1;
   top: 104px;
