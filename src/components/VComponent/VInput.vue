@@ -117,7 +117,7 @@
 
   .hasValue ~ .label {
     @apply bg-white;
-    top: 1px;
+    top: -3px;
   }
 
   .noValidation {

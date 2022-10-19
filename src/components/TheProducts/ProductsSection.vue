@@ -122,9 +122,9 @@
         this.$emit('open-modal')
       },
       onScroll() {
+        // eslint-disable-next-line 
         Object.entries(this.$refs).forEach(([key, value]) => {
           const rect = value[0].$el.getBoundingClientRect()
-          console.log(key);
 
           const isItemActive =  rect.top - window.innerHeight + 200 < 0
 

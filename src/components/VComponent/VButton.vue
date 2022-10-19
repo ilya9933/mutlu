@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="disabled" :class="[$style.button, {[$style.themeWhite]: themeWhite, [$style.themeRed]: !themeWhite}]">
+  <button :disabled="disabled" :class="[$style.button, {[$style.themeWhite]: themeWhite, [$style.themeRed]: !themeWhite, [$style.disabled]: disabled }]">
     <slot></slot>
   </button>
 </template>
@@ -54,6 +54,14 @@
     }
     &:active {
       @apply bg-gray-g4 text-white border-white border;
+    }
+  }
+
+  .disabled {
+    @apply bg-gray text-white border-gray;
+
+    &:hover {
+      @apply bg-gray text-white border-gray;
     }
   }
 </style>

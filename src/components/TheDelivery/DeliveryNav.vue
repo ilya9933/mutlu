@@ -15,7 +15,7 @@
       <div :class="$style.des">{{text}}</div>
     </div>
     <transition name="list" mode="out-in">
-      <img :class="$style.img" :src="img" alt="gazelle">
+      <img :class="[$style.img, {[$style.show] : isShow}]" :src="img" alt="gazelle" ref="gazelle">
     </transition>
   </div>
 </template>
@@ -27,6 +27,8 @@
     data() {
       return {
         id: 1,
+        isShow: false,
+        lastScrollPosition: 0
       }
     },
      props: {
@@ -45,14 +47,24 @@
         return require(`../../assets/img/${arr.img}`)
       }
     },
-    // methods: {
-    //   next(id){
-    //     this.index++;
-    //     if(this.index >= this.slidesLength){
-    //         this.index = 0;
-    //     }
-    //     this.slideDirection = 'slide-right';
-    //   },
+    methods: {
+      onScroll() {
+        const img = this.$refs.gazelle.getBoundingClientRect()
+
+        const isItemActive =  img.top - window.innerHeight + 200 < 0
+
+        if (isItemActive) {
+          this.isShow = true
+        }
+      },
+    },
+    mounted() {
+    this.lastScrollPosition = window.pageYOffset
+    window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
   } 
 </script>
 
@@ -80,6 +92,11 @@
     width: 600px;
     margin: auto;
     padding-bottom: 20px;
+    @apply opacity-0 translate-y-4;
+
+    &.show {
+      @apply opacity-100 translate-y-0 transition-all ease-in duration-700;
+    }
   }
 
   .title {

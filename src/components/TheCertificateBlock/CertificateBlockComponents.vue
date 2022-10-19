@@ -13,44 +13,99 @@
         </VButton>
       </div>
       <div>
-        <img :class="$style.img" src="../../assets/img/certificate.png" alt="certificate">
+        <img :class="[$style.img, {[$style.show] : isShow}]" ref="img" src="../../assets/img/certificate.png" alt="certificate">
       </div>
     </div>
-    <ul :class="$style.info">
-      <li :class="$style.infoBlock">
-        <div :class="$style.infoTitle">27 лет</div>
-        <div :class="$style.description">Мы поставляем качественные запчасти по всей России</div>
-      </li>
-      <li :class="$style.infoBlock">
-        <div :class="$style.infoTitle">Доверие клиентов</div>
-        <div :class="$style.description">Более 11 000 партнеров сотрудничают с нами </div>
-      </li>
-      <li :class="$style.infoBlock">
-        <div :class="$style.infoTitle">Всегда в наличии</div>
-        <div :class="$style.description">Бесперебойные поставки аккумуляторов MUTLU напрямую от производителя в кратчайшие сроки</div>
-      </li>
-      <li :class="$style.infoBlock">
-        <div :class="$style.infoTitle">Бесплатная экспертиза</div>
-        <div :class="$style.description">и обмен в случае заводского брака</div>
-      </li>
-    </ul>
-    
+    <ul :class="$style.info" ref="info">
+      <CertificateBlockInfo 
+        v-for="info in infos"
+        :key="info.id"
+        :info="info"
+        :ref="info.id"
+      />
+    </ul> 
   </div>
 </template>
 
 <script>
    import VButton from '../VComponent/VButton.vue'
+   import CertificateBlockInfo from './CertificateBlockInfo.vue'
 
   export default {
     name: 'CertificateBlockComponents',
     components: {
       VButton,
+      CertificateBlockInfo,
+
     },
+    data: () => ({
+      lastScrollPosition: 0,
+      isShow: false,
+      infos: [
+        {
+          id: "age",
+          title: "27 лет",
+          text: "Мы поставляем качественные запчасти по всей России"
+        },
+        {
+          id: "trust",
+          title: "Доверие клиентов",
+          text: "Более 11 000 партнеров сотрудничают с нами"
+        },
+        {
+          id: "availability",
+          title: "Всегда в наличии",
+          text: "Бесперебойные поставки аккумуляторов MUTLU напрямую от производителя в кратчайшие сроки"
+        },
+        {
+          id: "expertise",
+          title: "Бесплатная экспертиза",
+          text: "и обмен в случае заводского брака"
+        }
+      ]
+    }),
     methods: {
       openModal() {
         this.$emit('open-modal')
+      },
+      onScroll() {
+        this.showImg()
+        this.showInfo()
+
+      },
+      showImg() {
+        const img = this.$refs.img.getBoundingClientRect()
+
+        const isItemActive =  img.top - window.innerHeight + 200 < 0
+
+        if (isItemActive) {
+          this.isShow = true
+        }
+      },
+      showInfo() {
+        const info = this.$refs.info.getBoundingClientRect().top - window.innerHeight + 200 < 0
+        if (info) {
+          // eslint-disable-next-line
+          const refsWithoutImageRef = Object.entries(this.$refs).filter(([key, value]) => key !== 'img' && key!=='info')
+          let count = 0
+          // eslint-disable-next-line
+          refsWithoutImageRef.forEach(([key, value]) => {
+            setTimeout(function(){
+              value[0].isShow = true
+            }, count);
+            count += 1000
+          })
+        }
+        // eslint-disable-next-line 
       }
-    }
+    },
+    mounted() {
+    this.lastScrollPosition = window.pageYOffset
+    window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
   } 
 </script>
 
@@ -77,7 +132,12 @@
   }
 
   .img {
-    margin: 0 auto auto
+    margin: 0 auto auto;
+    @apply opacity-0 translate-y-4;
+
+    &.show {
+      @apply opacity-100 translate-y-0 transition-all ease-in duration-700;
+    }
   }
 
   .info {
