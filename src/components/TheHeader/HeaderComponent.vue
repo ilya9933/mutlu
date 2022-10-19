@@ -126,7 +126,7 @@ import VButton from '../VComponent/VButton.vue'
   }
 
   .copy {
-    cursor: copy;
+    cursor: pointer;
   }
 
   .delay {
