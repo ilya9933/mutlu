@@ -25,7 +25,6 @@
             <VButton type='submit' :disabled="buttonDis" :class="$style.button">
               <span>Отправить заявку</span>
             </VButton>
-            <!-- <input type="submit"  value="Отправить заявку" :class="$style.button" /> -->
             <div v-if="emptyField">*Все поля должны быть заполнены</div>
           </form>
         </div>
@@ -74,7 +73,7 @@ export default {
       },
       emptyField: false,
       buttonDis: false,
-      endpoint: 'https://......',
+      endpoint: 'https://absel-akb.localhost/send.php',
     }
   },
 
