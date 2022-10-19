@@ -30,11 +30,9 @@
       <DeliveryBlock />
     </section>
     <div class="relative parallaxFixed parallaxDeskt">
-      <VParallax id="car"
-        :sectionHeight=540
-        >
-        <img src="./assets/img/bg.png" alt="bg">
-      </VParallax>
+
+        <img class="bgImg" src="./assets/img/bg.png" alt="bg">
+
     </div>
     <img class="parallaxMob parallaxMobBg" src="./assets/img/bg-2.png" alt="bg">
     <section id="contacts" class="contacts">
@@ -167,6 +165,12 @@ export default {
   width: 100%;
 }
 
+.bgImg {
+  height: 540px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .parallaxMobBg {
   min-height: 264px;
 }
@@ -174,6 +178,8 @@ export default {
 .parallaxMob {
   display: none;
 }
+
+
 
 @media screen and (max-width: 1000px) {
   .imgSatellite {
