@@ -7,7 +7,7 @@
           <div :class="$style.text">с вами свяжется наш специалист</div>
           <img :class="$style.img" src="../../assets/img/modal-img.png" alt="modal-img">
         </div>
-        <div :class="$style.info">
+        <div :class="$style.info" v-if="!error && !successfulApplication">
           <div :class="$style.infoText">
             <div :class="$style.title">Оставьте контакты</div>
             <div :class="$style.text">с вами свяжется наш специалист</div>
@@ -27,6 +27,21 @@
             </VButton>
             <div v-if="emptyField">*Все поля должны быть заполнены</div>
           </form>
+        </div>
+        <div :class="$style.info" v-if="successfulApplication">
+          <div :class="[$style.infoText, $style.infoTextLuck]">
+            <div :class="$style.title">Успех!</div>
+            <div :class="$style.text">с вами свяжется наш специалист</div>
+          </div>
+        </div>
+        <div :class="$style.info" v-if="error">
+          <div :class="[$style.infoText, $style.infoTextError]">
+            <div :class="$style.title">Ошибка</div>
+            <div :class="$style.text">что-то пошло не так</div>
+          </div>
+          <VButton :class="$style.button" @click.native="repeat()">
+            <span>Повторить попытку</span>
+          </VButton>
         </div>
       </div>
       <div :class="$style.buttonClose" @click="closeModal()">
@@ -74,12 +89,21 @@ export default {
       emptyField: false,
       buttonDis: false,
       endpoint: 'https://absel-akb.localhost/send.php',
+      error: false,
+      successfulApplication: false
     }
   },
 
   methods: {
     closeModal() {
       this.$emit('close-modal')
+    },
+    repeat() {
+      this.form.name.value = ''
+      this.form.city.value = ''
+      this.form.telephone.value = ''
+      this.successfulApplication = false
+      this.error = false
     },
     clickButton() {
       this.emptyField = false
@@ -103,6 +127,8 @@ export default {
       this.submitForm()
     },
     async submitForm() {
+      this.successfulApplication = false
+      this.error = false
       this.buttonDis = true
       const data = {
         name: this.form.name.value,
@@ -116,11 +142,11 @@ export default {
         this.form.telephone.value = ''
         this.buttonDis = false
         this.messageSent = true
-        this.closeModal()
+        this.successfulApplication = true
       } catch (error) {
         this.buttonDis = false
         console.log(error)
-        alert('Something went wrong, please try again =)')
+        this.error = true
       }
     }
   },
@@ -230,6 +256,19 @@ export default {
   display: none;
 }
 
+.infoTextLuck,
+.infoTextError {
+  display: block;
+
+  .title {
+    text-transform: uppercase;
+  }
+
+  & + .button {
+    margin-top: 50px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .container {
     max-height: none;
@@ -276,6 +315,19 @@ export default {
 
     & .img {
       height: 204px;
+    }
+  }
+
+  .infoTextLuck,
+  .infoTextError {
+    text-align: center;
+
+    .title {
+      text-transform: uppercase;
+    }
+
+    & + .button {
+      margin-top: 50px;
     }
   }
 }

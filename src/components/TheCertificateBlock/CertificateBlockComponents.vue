@@ -93,7 +93,7 @@
             setTimeout(function(){
               value[0].isShow = true
             }, count);
-            count += 1000
+            count += 500
           })
         }
         // eslint-disable-next-line 

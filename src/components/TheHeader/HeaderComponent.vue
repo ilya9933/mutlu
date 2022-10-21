@@ -29,7 +29,7 @@
     <div :class="$style.info">
       <div :class="[$style.content, $style.text, $style.tel]">8 (800) 350-87-08</div>
       <button :class="[$style.content, $style.hoverAnimation, $style.desct, $style.delay]" data-title="связаться с менеджером" @click="openModal()"><img :class="$style.img" src="../../assets/svg/union.svg" /></button>
-      <button :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct, {[$style.delay] : addresCopy}]" data-title="адрес почты скопирован" @click="copy"><img :class="$style.img" src="../../assets/svg/message.svg" /></button>
+      <a :class="[$style.content, $style.copy, $style.hoverAnimation, $style.desct, $style.delay]" data-title="напимсать нам" href="mailto:mutlu@absel.ru" @click="copy"><img :class="$style.img" src="../../assets/svg/message.svg" /></a>
       <button :class="[$style.burger, $style.mob, {[$style.active]: mobileHeaderMenu}]" @click="mobileHeaderMenu = !mobileHeaderMenu"></button>
     </div>
   </header>
@@ -127,6 +127,8 @@ import VButton from '../VComponent/VButton.vue'
 
   .copy {
     cursor: pointer;
+    display: flex;
+
   }
 
   .delay {

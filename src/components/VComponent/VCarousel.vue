@@ -46,6 +46,15 @@ export default {
         z-index:10;
         border-radius: 4px;
     }
+    .carousel::before {
+        content: "";
+        position:absolute;
+        width: 100%;
+        height: 200px;
+        bottom: 0;
+        z-index:1;
+        background: linear-gradient(180deg, rgba(239, 239, 238, 0) 0%, #000000eb 100%);
+    }
     .btn {
         height:60px;
         width:60px;

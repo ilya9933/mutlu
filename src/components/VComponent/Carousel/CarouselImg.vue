@@ -61,6 +61,7 @@
     font-size: 32px;
     line-height: 40px;
     margin-right: 170px;
+    z-index: 1;
   }
 
   @media screen and (max-width: 768px) {
