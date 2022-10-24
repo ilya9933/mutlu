@@ -96,6 +96,8 @@ export default {
 
   methods: {
     closeModal() {
+      this.error = false,
+      this.successfulApplication = false
       this.$emit('close-modal')
     },
     repeat() {

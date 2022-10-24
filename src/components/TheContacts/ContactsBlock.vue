@@ -96,6 +96,7 @@
     }
 
     .text {
+      @apply flex flex-col;
       padding-left: 0;
       padding-bottom: 40px;
     }
@@ -130,6 +131,7 @@
       padding: 14px 15px;
       font-size: 24px;
       height: 139px;
+      margin: 0 auto;
       margin-bottom: 40px;
     }
 

@@ -112,6 +112,10 @@
     overflow-x: auto;
     overflow-y: hidden;
 
+    &::-webkit-scrollbar {
+      height: 0px;
+    }
+
     & li {
       @apply transition-all ease-in-out duration-300;
     }

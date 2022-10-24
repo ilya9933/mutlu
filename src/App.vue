@@ -5,6 +5,7 @@
       <img class="imgSatellite" :style="{ transform: directionValue }" src="./assets/img/satellite.png" alt="satellite">
       <div class="parallax">
         <VParallax id="space"
+        name= "space"
         :speedFactor=0.3
         >
         <img src="./assets/img/space.png" alt="space">
@@ -12,9 +13,9 @@
       </div>
       <MainSection @open-modal="showModal = true"/>
     </section>
-    <div class="relative parallaxFixed parallaxDeskt">
+    <div class="relative parallaxCar parallaxDeskt">
       <VParallax id="car"
-        :sectionHeight=400
+        name= "car"
         >
         <img src="./assets/img/car.png" alt="car">
       </VParallax>
@@ -29,10 +30,10 @@
     <section id="delivery" class="delivery">
       <DeliveryBlock />
     </section>
-    <div class="relative parallaxFixed parallaxDeskt">
-
-        <img class="bgImg" src="./assets/img/bg.png" alt="bg">
-
+    <div class="relative parallaxBg parallaxDeskt">
+      <VParallax id="car1" name= "car1">
+        <img src="./assets/img/bg.png" alt="bg">
+      </VParallax>
     </div>
     <img class="parallaxMob parallaxMobBg" src="./assets/img/bg-2.png" alt="bg">
     <section id="contacts" class="contacts">
@@ -137,8 +138,14 @@ export default {
 
 }
 
-.parallaxFixed {
+.parallaxCar {
   overflow: overlay;
+  height: 400px
+}
+
+.parallaxBg {
+  overflow: overlay;
+  height: 540px
 }
 
 .imgSatellite {
@@ -184,7 +191,7 @@ export default {
 @media screen and (max-width: 1000px) {
   .imgSatellite {
     position: absolute;
-    top: 60px;
+    top: 235px;
     left: 6px;
   }
 
@@ -204,7 +211,7 @@ export default {
   .imgSatellite {
     width: 236px;
     top: 49px;
-    left: auto;
+    left: unset;
     right: -28px;
   }
 }

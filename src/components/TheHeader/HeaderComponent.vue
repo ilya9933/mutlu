@@ -5,16 +5,16 @@
     </div>
     <ul :class="[$style.links, $style.linksDesct, {[$style.mobileNav]:  mobileHeaderMenu}]">
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="[$style.text, $style.main]" href="#products" @click="mobileHeaderMenu = false">Продукция</a>
+        <a :class="[$style.text, {[$style.main]: activeNav === 'products'}]" href="#products" @click="mobileHeaderMenu = false, activeNav ='products'">Продукция</a>
       </li>
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="$style.text" href="#carousel" @click="mobileHeaderMenu = false">О MUTLU</a>
+        <a :class="[$style.text, {[$style.main]: activeNav === 'carousel'}]" href="#carousel" @click="mobileHeaderMenu = false, activeNav ='carousel'">О MUTLU</a>
       </li>
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="$style.text" href="#red" @click="mobileHeaderMenu = false">О нас</a>
+        <a :class="[$style.text, {[$style.main]: activeNav === 'red'}]" href="#red" @click="mobileHeaderMenu = false, activeNav ='red'">О нас</a>
       </li>
       <li :class="[$style.linksButton, $style.hoverAnimation]">
-        <a :class="$style.text" href="#delivery" @click="mobileHeaderMenu = false">Доставка</a>
+        <a :class="[$style.text, {[$style.main]: activeNav === 'delivery'}]" href="#delivery" @click="mobileHeaderMenu = false, activeNav ='delivery'">Доставка</a>
       </li>
       <div v-if="mobileHeaderMenu" :class="[$style.infoMob, $style.mob, {[$style.active]: mobileHeaderMenu}]">
       <div :class="$style.questions">
@@ -49,6 +49,7 @@ import VButton from '../VComponent/VButton.vue'
     lastScrollPosition: 0,
     scrollOffset: 40,
     addresCopy: false,
+    activeNav: "products",
   }),
   mounted() {
     this.lastScrollPosition = window.pageYOffset
@@ -111,6 +112,10 @@ import VButton from '../VComponent/VButton.vue'
 
   .linksButton {
     @apply px-4 cursor-pointer flex items-center h-full font-medium text-sm tracking-wide;
+
+    .text:active {
+      @apply text-red
+    }
   }
 
   .text {
